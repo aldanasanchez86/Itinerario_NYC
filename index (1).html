@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NYC · 24–29 Agosto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0D1B2A;
+  --surface: #16283D;
+  --surface2: #1C3049;
+  --ink: #F3F4F0;
+  --muted: #8FA0B5;
+  --yellow: #FCCC0A;
+  --hairline: #29405C;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.5;
+  padding-bottom: 80px;
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+
+/* ===== HERO / TICKET ===== */
+.hero {
+  background: linear-gradient(180deg, #0A1420 0%, #0D1B2A 100%);
+  border-bottom: 4px solid var(--yellow);
+  padding: 56px 20px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,255,255,0.025) 38px 40px);
+  pointer-events: none;
+}
+.hero-inner { max-width: 880px; margin: 0 auto; position: relative; }
+.hero-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--yellow);
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 10vw, 88px);
+  line-height: 0.92;
+  letter-spacing: 1px;
+  color: var(--ink);
+}
+.hero h1 span { color: var(--yellow); }
+.hero-dates {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.ticket {
+  margin-top: 34px;
+  background: var(--surface);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+}
+.ticket::after {
+  content: "";
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 0;
+  border-left: 2px dashed rgba(255,255,255,0.15);
+  transform: translateX(-50%);
+}
+.ticket-leg { padding: 22px 24px; }
+.ticket-leg + .ticket-leg { }
+.ticket-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--yellow);
+  margin-bottom: 8px;
+}
+.ticket-route {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+}
+.ticket-flight { color: var(--muted); font-size: 13px; margin-top: 4px; font-family: 'IBM Plex Mono', monospace;}
+.ticket-time { margin-top: 10px; font-size: 14px; color: var(--ink); }
+.ticket-time b { color: var(--yellow); }
+.hotel-note {
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: var(--muted);
+  display: flex; gap: 8px; align-items: baseline;
+}
+.hotel-note b { color: var(--ink); }
+
+/* ===== NAV ===== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(13,27,42,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--hairline);
+  padding: 12px 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.nav-inner { max-width: 880px; margin: 0 auto; display: flex; gap: 10px; }
+.nav-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  flex-shrink: 0;
+}
+.nav-chip span {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--c);
+  color: white; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-head {
+  padding: 56px 0 20px;
+}
+.section-head .eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--yellow);
+  font-size: 12px; letter-spacing: 2px; margin-bottom: 6px;
+}
+.section-head h2.big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px; letter-spacing: 0.5px;
+}
+
+/* ===== DAY SECTIONS ===== */
+.day {
+  padding: 44px 0;
+  border-top: 1px solid var(--hairline);
+  scroll-margin-top: 70px;
+}
+.day-head { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 26px; }
+.day-badge {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #0D1B2A; flex-shrink: 0;
+}
+.day-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--muted); letter-spacing: 1.5px; margin-bottom: 4px;
+}
+.day-head h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 38px);
+  letter-spacing: 0.3px;
+  line-height: 1.05;
+}
+.day-sub { color: var(--muted); font-size: 14.5px; margin-top: 4px; }
+
+.day-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: start; }
+@media (max-width: 760px) { .day-grid { grid-template-columns: 1fr; } }
+
+.stops { list-style: none; position: relative; }
+.stops::before {
+  content: "";
+  position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px;
+  background: var(--hairline);
+}
+.stop { position: relative; padding-left: 26px; padding-bottom: 18px; display: block; }
+.stop:last-child { padding-bottom: 0; }
+.stop-dot {
+  position: absolute; left: 0; top: 4px;
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--hairline);
+}
+.stop-time {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; color: var(--yellow); font-weight: 600;
+  margin-bottom: 2px;
+}
+.stop-act { font-size: 15px; font-weight: 600; display: flex; gap: 8px; flex-wrap: wrap; align-items: baseline; }
+.stop-note { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  color: #0D1B2A; background: var(--yellow);
+  padding: 1px 7px; border-radius: 8px;
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.mapcard {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid var(--hairline);
+}
+.mapsvg { width: 100%; height: auto; display: block; }
+.mapsvg a circle { transition: r 0.15s ease; cursor: pointer; }
+.mapsvg a:hover circle { r: 16; }
+.mapcard-hint {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; letter-spacing: 1px; color: var(--muted);
+  text-align: center; margin-top: 8px;
+}
+.mapcard-link {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--c);
+  color: #0D1B2A;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+}
+.mapcard-link:hover { filter: brightness(1.08); }
+
+/* ===== BUDGET ===== */
+.budget-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+.budget-table td { padding: 11px 4px; border-bottom: 1px solid var(--hairline); font-size: 14.5px; }
+.budget-table td.num { text-align: right; font-family: 'IBM Plex Mono', monospace; color: var(--yellow); font-weight: 600; }
+.budget-total {
+  margin-top: 18px;
+  background: var(--surface2);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.budget-total .lbl { font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 1.5px; color: var(--muted); }
+.budget-total .amt { font-family: 'Bebas Neue', sans-serif; font-size: 30px; color: var(--yellow); }
+.tip {
+  margin-top: 16px; font-size: 13.5px; color: var(--muted);
+  border-left: 3px solid var(--yellow); padding-left: 12px;
+}
+
+/* ===== DINNER ZONES ===== */
+.dinner-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+.dinner-chip {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: 12px; padding: 10px 14px; font-size: 14px;
+}
+.dinner-dow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 700;
+  color: #0D1B2A; padding: 4px 8px; border-radius: 6px; flex-shrink: 0;
+}
+
+/* ===== PHOTO CARDS ===== */
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+@media (max-width: 620px) { .photo-grid { grid-template-columns: 1fr; } }
+.photo-card {
+  background: var(--surface); border: 1px solid var(--hairline);
+  border-radius: 14px; padding: 16px 18px;
+}
+.photo-tag {
+  font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 1.5px;
+  color: var(--yellow); margin-bottom: 6px;
+}
+.photo-card h3 { font-size: 16px; margin-bottom: 6px; }
+.photo-card p { font-size: 13.5px; color: var(--muted); }
+
+/* ===== SUBWAY GUIDE ===== */
+.subway-step { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); }
+.subway-step:last-child { border-bottom: none; }
+.subway-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+  background: var(--yellow); color: #0D1B2A;
+  display: flex; align-items: center; justify-content: center;
+}
+.subway-step h4 { font-size: 15.5px; margin-bottom: 4px; }
+.subway-step p { font-size: 13.5px; color: var(--muted); }
+
+.routes-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13.5px; }
+.routes-table th {
+  text-align: left; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px;
+  letter-spacing: 1.5px; color: var(--muted); padding: 8px 6px; border-bottom: 1px solid var(--hairline);
+}
+.routes-table td { padding: 10px 6px; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+.route-name { font-weight: 600; }
+.route-day { color: var(--yellow); font-family: 'IBM Plex Mono', monospace; font-size: 12px; white-space: nowrap; }
+
+/* ===== PHOTO NOTE ===== */
+.callout {
+  background: var(--surface2); border-radius: 14px; padding: 18px 20px;
+  margin-top: 20px; font-size: 13.5px; color: var(--muted);
+  border-left: 3px solid var(--yellow);
+}
+.callout b { color: var(--ink); }
+
+footer {
+  text-align: center; padding: 50px 20px 10px; color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 1px;
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">ITINERARIO DE VIAJE</div>
+    <h1>NEW YORK<span>.</span></h1>
+    <div class="hero-dates">24 → 29 DE AGOSTO 2026 · 6 DÍAS</div>
+
+    <div class="ticket">
+      <div class="ticket-leg">
+        <div class="ticket-label">IDA · AA954</div>
+        <div class="ticket-route">EZE → JFK</div>
+        <div class="ticket-flight">American Airlines · directo · 10h45</div>
+        <div class="ticket-time">Sale dom 23/08 <b>21:05</b> — llega lun 24/08 <b>06:50</b></div>
+      </div>
+      <div class="ticket-leg">
+        <div class="ticket-label">VUELTA · AA953</div>
+        <div class="ticket-route">JFK → EZE</div>
+        <div class="ticket-flight">American Airlines · directo · 10h45</div>
+        <div class="ticket-time">Sale sáb 29/08 <b>23:20</b> — llega dom 30/08 <b>11:05</b></div>
+      </div>
+    </div>
+    <div class="hotel-note">🏨 <b>Arlo SoHo</b> — 231 Hudson St · ~1h10 en transporte público a JFK</div>
+  </div>
+</div>
+
+<nav class="nav"><div class="nav-inner">
+  <a href="#day1" class="nav-chip" style="--c:#0039A6"><span>1</span>LUN</a>
+<a href="#day2" class="nav-chip" style="--c:#00933C"><span>2</span>MAR</a>
+<a href="#day3" class="nav-chip" style="--c:#EE352E"><span>3</span>MIÉ</a>
+<a href="#day4" class="nav-chip" style="--c:#A7A9AC"><span>4</span>JUE</a>
+<a href="#day5" class="nav-chip" style="--c:#FCCC0A"><span>5</span>VIE</a>
+<a href="#day6" class="nav-chip" style="--c:#FF6319"><span>6</span>SÁB</a>
+  <a href="#budget" class="nav-chip" style="--c:#8FA0B5"><span>$</span>BUDGET</a>
+  <a href="#fotos" class="nav-chip" style="--c:#8FA0B5"><span>📷</span>FOTOS</a>
+  <a href="#subte" class="nav-chip" style="--c:#8FA0B5"><span>🚇</span>SUBTE</a>
+</div></nav>
+
+<div class="wrap">
+
+  
+    <section class="day" id="day1" style="--line-color:#0039A6">
+      <div class="day-head">
+        <div class="day-badge" style="background:#0039A6">1</div>
+        <div class="day-headtext">
+          <div class="day-eyebrow">LUN 24 AGO &nbsp;·&nbsp; LÍNEA A · C · E</div>
+          <h2>SoHo, Village, Chelsea & Cóctel de Google</h2>
+          <p class="day-sub">Llegada a NYC — recorrido por el downtown + bienvenida de Google en The Yacht Club</p>
+        </div>
+      </div>
+      
+      <div class="day-grid">
+        <ul class="stops">
+          
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">06:50</div>
+          <div class="stop-body">
+            <div class="stop-act">Llegada a JFK </div>
+            <div class="stop-note">Vuelo AA954 desde Buenos Aires</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">07:30–09:00</div>
+          <div class="stop-body">
+            <div class="stop-act">JFK → Hotel <span class="price">~$12–15</span></div>
+            <div class="stop-note">AirTrain + línea A · Howard Beach → Canal St</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">09:00–10:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Check-in + desayuno </div>
+            <div class="stop-note">Arlo SoHo, 231 Hudson St</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">10:00–11:00</div>
+          <div class="stop-body">
+            <div class="stop-act">SoHo </div>
+            <div class="stop-note">Calles empedradas, cast-iron buildings</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">11:00–11:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Nolita </div>
+            <div class="stop-note">10 min caminando</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">11:45–12:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Washington Square Park </div>
+            <div class="stop-note">10–15 min caminando</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">12:30–13:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Greenwich + West Village </div>
+            <div class="stop-note">Caminando</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">13:30–14:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Chelsea Market <span class="price">$20–30</span></div>
+            <div class="stop-note">Almuerzo rápido</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">14:15–15:15</div>
+          <div class="stop-body">
+            <div class="stop-act">High Line </div>
+            <div class="stop-note">Parque elevado sobre las vías</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">15:15–15:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Little Island </div>
+            <div class="stop-note">5 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">15:45–17:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Tiempo libre </div>
+            <div class="stop-note">Hudson Yards / Chelsea, o volver al hotel a cambiarse</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">17:30–18:00</div>
+          <div class="stop-body">
+            <div class="stop-act">→ The Yacht Club </div>
+            <div class="stop-note">212 12th Ave (Starrett-Lehigh Bldg.) · caminando ~15 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">18:00–21:00</div>
+          <div class="stop-body">
+            <div class="stop-act">🍸 Cóctel de bienvenida — Google </div>
+            <div class="stop-note">The Yacht Club, 10º piso · reemplaza a Top of the Rock este día</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#0039A6"></div>
+          <div class="stop-time">21:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Regreso al hotel </div>
+            <div class="stop-note">El cóctel probablemente incluye comida — cena opcional si hace falta</div>
+          </div>
+        </li>
+        </ul>
+        <div class="mapcard">
+          <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="mapsvg"><defs><clipPath id="clip-140586098807360"><rect x="0" y="0" width="640" height="380" rx="14"/></clipPath></defs><g clip-path="url(#clip-140586098807360)"><rect x="0" y="0" width="640" height="380" fill="#F1ECE1"/><g transform="rotate(-29 320.0 190.0)" stroke="#D8CFBA" stroke-width="1"><line x1="-460" y1="-1152" x2="-460" y2="1152"/><line x1="-426" y1="-1152" x2="-426" y2="1152"/><line x1="-392" y1="-1152" x2="-392" y2="1152"/><line x1="-358" y1="-1152" x2="-358" y2="1152"/><line x1="-324" y1="-1152" x2="-324" y2="1152"/><line x1="-290" y1="-1152" x2="-290" y2="1152"/><line x1="-256" y1="-1152" x2="-256" y2="1152"/><line x1="-222" y1="-1152" x2="-222" y2="1152"/><line x1="-188" y1="-1152" x2="-188" y2="1152"/><line x1="-154" y1="-1152" x2="-154" y2="1152"/><line x1="-120" y1="-1152" x2="-120" y2="1152"/><line x1="-86" y1="-1152" x2="-86" y2="1152"/><line x1="-52" y1="-1152" x2="-52" y2="1152"/><line x1="-18" y1="-1152" x2="-18" y2="1152"/><line x1="16" y1="-1152" x2="16" y2="1152"/><line x1="50" y1="-1152" x2="50" y2="1152"/><line x1="84" y1="-1152" x2="84" y2="1152"/><line x1="118" y1="-1152" x2="118" y2="1152"/><line x1="152" y1="-1152" x2="152" y2="1152"/><line x1="186" y1="-1152" x2="186" y2="1152"/><line x1="220" y1="-1152" x2="220" y2="1152"/><line x1="254" y1="-1152" x2="254" y2="1152"/><line x1="288" y1="-1152" x2="288" y2="1152"/><line x1="322" y1="-1152" x2="322" y2="1152"/><line x1="356" y1="-1152" x2="356" y2="1152"/><line x1="390" y1="-1152" x2="390" y2="1152"/><line x1="424" y1="-1152" x2="424" y2="1152"/><line x1="458" y1="-1152" x2="458" y2="1152"/><line x1="492" y1="-1152" x2="492" y2="1152"/><line x1="526" y1="-1152" x2="526" y2="1152"/><line x1="560" y1="-1152" x2="560" y2="1152"/><line x1="594" y1="-1152" x2="594" y2="1152"/><line x1="628" y1="-1152" x2="628" y2="1152"/><line x1="662" y1="-1152" x2="662" y2="1152"/><line x1="696" y1="-1152" x2="696" y2="1152"/><line x1="730" y1="-1152" x2="730" y2="1152"/><line x1="764" y1="-1152" x2="764" y2="1152"/><line x1="798" y1="-1152" x2="798" y2="1152"/><line x1="832" y1="-1152" x2="832" y2="1152"/><line x1="866" y1="-1152" x2="866" y2="1152"/><line x1="900" y1="-1152" x2="900" y2="1152"/><line x1="934" y1="-1152" x2="934" y2="1152"/><line x1="968" y1="-1152" x2="968" y2="1152"/><line x1="1002" y1="-1152" x2="1002" y2="1152"/><line x1="1036" y1="-1152" x2="1036" y2="1152"/><line x1="1070" y1="-1152" x2="1070" y2="1152"/><line x1="1104" y1="-1152" x2="1104" y2="1152"/><line x1="1138" y1="-1152" x2="1138" y2="1152"/><line x1="-1152" y1="-460" x2="1152" y2="-460" stroke-width="1.6"/><line x1="-1152" y1="-370" x2="1152" y2="-370" stroke-width="1.6"/><line x1="-1152" y1="-280" x2="1152" y2="-280" stroke-width="1.6"/><line x1="-1152" y1="-190" x2="1152" y2="-190" stroke-width="1.6"/><line x1="-1152" y1="-100" x2="1152" y2="-100" stroke-width="1.6"/><line x1="-1152" y1="-10" x2="1152" y2="-10" stroke-width="1.6"/><line x1="-1152" y1="80" x2="1152" y2="80" stroke-width="1.6"/><line x1="-1152" y1="170" x2="1152" y2="170" stroke-width="1.6"/><line x1="-1152" y1="260" x2="1152" y2="260" stroke-width="1.6"/><line x1="-1152" y1="350" x2="1152" y2="350" stroke-width="1.6"/><line x1="-1152" y1="440" x2="1152" y2="440" stroke-width="1.6"/><line x1="-1152" y1="530" x2="1152" y2="530" stroke-width="1.6"/><line x1="-1152" y1="620" x2="1152" y2="620" stroke-width="1.6"/><line x1="-1152" y1="710" x2="1152" y2="710" stroke-width="1.6"/><line x1="-1152" y1="800" x2="1152" y2="800" stroke-width="1.6"/><line x1="-1152" y1="890" x2="1152" y2="890" stroke-width="1.6"/><line x1="-1152" y1="980" x2="1152" y2="980" stroke-width="1.6"/><line x1="-1152" y1="1070" x2="1152" y2="1070" stroke-width="1.6"/></g></g><rect x="1" y="1" width="638" height="378" rx="14" fill="none" stroke="#D8CFBA" stroke-width="2"/><defs><marker id="arrow-0039A6" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#0039A6"/></marker></defs><path d="M 291.7 310.0 L 333.0 309.1 L 364.3 252.8 L 304.1 149.3 L 313.5 99.6 L 275.7 153.2 L 306.4 70.0" stroke="#0039A6" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow-0039A6)" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25))"/><line x1="291.7" y1="310.0" x2="273.3" y2="294.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7244913,-74.00796509999999+(Hotel)" target="_blank" rel="noopener"><circle cx="291.7" cy="310.0" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="291.7" y="314.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">1</text><text x="273.3" y="298.6" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Hotel</text></a><line x1="333.0" y1="309.1" x2="357.0" y2="309.1" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7245908,-74.00191740000001+(SoHo)" target="_blank" rel="noopener"><circle cx="333.0" cy="309.1" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="333.0" y="313.6" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">2</text><text x="357.0" y="313.1" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">SoHo</text></a><line x1="364.3" y1="252.8" x2="388.3" y2="252.8" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7308838,-73.997332+(Wash.%20Sq.%20Park)" target="_blank" rel="noopener"><circle cx="364.3" cy="252.8" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="364.3" y="257.3" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">3</text><text x="388.3" y="256.8" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Wash. Sq. Park</text></a><line x1="304.1" y1="149.3" x2="328.1" y2="149.3" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7424396,-74.0061439+(Chelsea%20Market)" target="_blank" rel="noopener"><circle cx="304.1" cy="149.3" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="304.1" y="153.8" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">4</text><text x="328.1" y="153.3" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Chelsea Market</text></a><line x1="313.5" y1="99.6" x2="337.5" y2="99.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.747992499999995,-74.0047649+(High%20Line)" target="_blank" rel="noopener"><circle cx="313.5" cy="99.6" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="313.5" y="104.1" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">5</text><text x="337.5" y="103.6" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">High Line</text></a><line x1="275.7" y1="153.2" x2="257.3" y2="137.8" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7420024,-74.010299+(Little%20Island)" target="_blank" rel="noopener"><circle cx="275.7" cy="153.2" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="275.7" y="157.7" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">6</text><text x="257.3" y="141.8" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Little Island</text></a><line x1="306.4" y1="70.0" x2="330.4" y2="70.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7513,-74.0058+(The%20Yacht%20Club)" target="_blank" rel="noopener"><circle cx="306.4" cy="70.0" r="14" fill="#0039A6" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="306.4" y="74.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">7</text><text x="330.4" y="74.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">The Yacht Club</text></a></svg>
+          <div class="mapcard-hint">📍 tocá un número para abrirlo en Google Maps</div>
+          <a class="mapcard-link" href="https://www.google.com/maps/dir/?api=1&origin=40.7244913,-74.00796509999999&destination=40.7513,-74.0058&waypoints=40.7245908,-74.00191740000001|40.7308838,-73.997332|40.7424396,-74.0061439|40.747992499999995,-74.0047649|40.7420024,-74.010299" target="_blank" rel="noopener" style="--c:#0039A6">
+            Abrir recorrido completo en Google Maps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day" id="day2" style="--line-color:#00933C">
+      <div class="day-head">
+        <div class="day-badge" style="background:#00933C">2</div>
+        <div class="day-headtext">
+          <div class="day-eyebrow">MAR 25 AGO &nbsp;·&nbsp; LÍNEA 4 · 5 · 6</div>
+          <h2>Google & Empire State de noche</h2>
+          <p class="day-sub">Jornada de trabajo + Empire State iluminado (SUMMIT se mudó al miércoles)</p>
+        </div>
+      </div>
+      
+      <div class="day-grid">
+        <ul class="stops">
+          
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">08:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Desayuno (evento Google) </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">09:00–17:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Google <span class="price">almuerzo incluido</span></div>
+            <div class="stop-note">Cierre de la jornada a las 5 PM</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">17:00–17:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Google → Grand Central <span class="price">$3</span></div>
+            <div class="stop-note">Según sede, ~30–45 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">17:45–18:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Grand Central Terminal </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">18:30–19:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Chrysler Building </div>
+            <div class="stop-note">5 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">19:00–19:30</div>
+          <div class="stop-body">
+            <div class="stop-act">🏙 Empire State Building — de noche </div>
+            <div class="stop-note">Caminando ~12–15 min · foto exterior</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#00933C"></div>
+          <div class="stop-time">19:30–20:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Cena — Koreatown <span class="price">$25–40</span></div>
+            <div class="stop-note">A metros del Empire State</div>
+          </div>
+        </li>
+        </ul>
+        <div class="mapcard">
+          <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="mapsvg"><defs><clipPath id="clip-140586095563584"><rect x="0" y="0" width="640" height="380" rx="14"/></clipPath></defs><g clip-path="url(#clip-140586095563584)"><rect x="0" y="0" width="640" height="380" fill="#F1ECE1"/><g transform="rotate(-29 320.0 190.0)" stroke="#D8CFBA" stroke-width="1"><line x1="-460" y1="-1152" x2="-460" y2="1152"/><line x1="-426" y1="-1152" x2="-426" y2="1152"/><line x1="-392" y1="-1152" x2="-392" y2="1152"/><line x1="-358" y1="-1152" x2="-358" y2="1152"/><line x1="-324" y1="-1152" x2="-324" y2="1152"/><line x1="-290" y1="-1152" x2="-290" y2="1152"/><line x1="-256" y1="-1152" x2="-256" y2="1152"/><line x1="-222" y1="-1152" x2="-222" y2="1152"/><line x1="-188" y1="-1152" x2="-188" y2="1152"/><line x1="-154" y1="-1152" x2="-154" y2="1152"/><line x1="-120" y1="-1152" x2="-120" y2="1152"/><line x1="-86" y1="-1152" x2="-86" y2="1152"/><line x1="-52" y1="-1152" x2="-52" y2="1152"/><line x1="-18" y1="-1152" x2="-18" y2="1152"/><line x1="16" y1="-1152" x2="16" y2="1152"/><line x1="50" y1="-1152" x2="50" y2="1152"/><line x1="84" y1="-1152" x2="84" y2="1152"/><line x1="118" y1="-1152" x2="118" y2="1152"/><line x1="152" y1="-1152" x2="152" y2="1152"/><line x1="186" y1="-1152" x2="186" y2="1152"/><line x1="220" y1="-1152" x2="220" y2="1152"/><line x1="254" y1="-1152" x2="254" y2="1152"/><line x1="288" y1="-1152" x2="288" y2="1152"/><line x1="322" y1="-1152" x2="322" y2="1152"/><line x1="356" y1="-1152" x2="356" y2="1152"/><line x1="390" y1="-1152" x2="390" y2="1152"/><line x1="424" y1="-1152" x2="424" y2="1152"/><line x1="458" y1="-1152" x2="458" y2="1152"/><line x1="492" y1="-1152" x2="492" y2="1152"/><line x1="526" y1="-1152" x2="526" y2="1152"/><line x1="560" y1="-1152" x2="560" y2="1152"/><line x1="594" y1="-1152" x2="594" y2="1152"/><line x1="628" y1="-1152" x2="628" y2="1152"/><line x1="662" y1="-1152" x2="662" y2="1152"/><line x1="696" y1="-1152" x2="696" y2="1152"/><line x1="730" y1="-1152" x2="730" y2="1152"/><line x1="764" y1="-1152" x2="764" y2="1152"/><line x1="798" y1="-1152" x2="798" y2="1152"/><line x1="832" y1="-1152" x2="832" y2="1152"/><line x1="866" y1="-1152" x2="866" y2="1152"/><line x1="900" y1="-1152" x2="900" y2="1152"/><line x1="934" y1="-1152" x2="934" y2="1152"/><line x1="968" y1="-1152" x2="968" y2="1152"/><line x1="1002" y1="-1152" x2="1002" y2="1152"/><line x1="1036" y1="-1152" x2="1036" y2="1152"/><line x1="1070" y1="-1152" x2="1070" y2="1152"/><line x1="1104" y1="-1152" x2="1104" y2="1152"/><line x1="1138" y1="-1152" x2="1138" y2="1152"/><line x1="-1152" y1="-460" x2="1152" y2="-460" stroke-width="1.6"/><line x1="-1152" y1="-370" x2="1152" y2="-370" stroke-width="1.6"/><line x1="-1152" y1="-280" x2="1152" y2="-280" stroke-width="1.6"/><line x1="-1152" y1="-190" x2="1152" y2="-190" stroke-width="1.6"/><line x1="-1152" y1="-100" x2="1152" y2="-100" stroke-width="1.6"/><line x1="-1152" y1="-10" x2="1152" y2="-10" stroke-width="1.6"/><line x1="-1152" y1="80" x2="1152" y2="80" stroke-width="1.6"/><line x1="-1152" y1="170" x2="1152" y2="170" stroke-width="1.6"/><line x1="-1152" y1="260" x2="1152" y2="260" stroke-width="1.6"/><line x1="-1152" y1="350" x2="1152" y2="350" stroke-width="1.6"/><line x1="-1152" y1="440" x2="1152" y2="440" stroke-width="1.6"/><line x1="-1152" y1="530" x2="1152" y2="530" stroke-width="1.6"/><line x1="-1152" y1="620" x2="1152" y2="620" stroke-width="1.6"/><line x1="-1152" y1="710" x2="1152" y2="710" stroke-width="1.6"/><line x1="-1152" y1="800" x2="1152" y2="800" stroke-width="1.6"/><line x1="-1152" y1="890" x2="1152" y2="890" stroke-width="1.6"/><line x1="-1152" y1="980" x2="1152" y2="980" stroke-width="1.6"/><line x1="-1152" y1="1070" x2="1152" y2="1070" stroke-width="1.6"/></g></g><rect x="1" y="1" width="638" height="378" rx="14" fill="none" stroke="#D8CFBA" stroke-width="2"/><defs><marker id="arrow-00933C" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#00933C"/></marker></defs><path d="M 501.8 70.0 L 569.5 132.7 L 164.5 298.8 L 70.5 310.0" stroke="#00933C" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow-00933C)" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25))"/><line x1="501.8" y1="70.0" x2="483.4" y2="54.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.75282,-73.9772+(Grand%20Central)" target="_blank" rel="noopener"><circle cx="501.8" cy="70.0" r="14" fill="#00933C" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="501.8" y="74.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">1</text><text x="483.4" y="58.6" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Grand Central</text></a><line x1="569.5" y1="132.7" x2="551.1" y2="117.2" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7516208,-73.97550199999999+(Chrysler%20Bldg.)" target="_blank" rel="noopener"><circle cx="569.5" cy="132.7" r="14" fill="#00933C" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="569.5" y="137.2" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">2</text><text x="551.1" y="121.2" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Chrysler Bldg.</text></a><line x1="164.5" y1="298.8" x2="188.5" y2="298.8" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7484405,-73.98566439999999+(Empire%20State)" target="_blank" rel="noopener"><circle cx="164.5" cy="298.8" r="14" fill="#00933C" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="164.5" y="303.3" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">3</text><text x="188.5" y="302.8" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Empire State</text></a><line x1="70.5" y1="310.0" x2="88.9" y2="325.4" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7482262,-73.9880235+(Koreatown)" target="_blank" rel="noopener"><circle cx="70.5" cy="310.0" r="14" fill="#00933C" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="70.5" y="314.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">4</text><text x="88.9" y="329.4" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Koreatown</text></a></svg>
+          <div class="mapcard-hint">📍 tocá un número para abrirlo en Google Maps</div>
+          <a class="mapcard-link" href="https://www.google.com/maps/dir/?api=1&origin=40.75282,-73.9772&destination=40.7482262,-73.9880235&waypoints=40.7516208,-73.97550199999999|40.7484405,-73.98566439999999" target="_blank" rel="noopener" style="--c:#00933C">
+            Abrir recorrido completo en Google Maps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day" id="day3" style="--line-color:#EE352E">
+      <div class="day-head">
+        <div class="day-badge" style="background:#EE352E">3</div>
+        <div class="day-headtext">
+          <div class="day-eyebrow">MIÉ 26 AGO &nbsp;·&nbsp; LÍNEA 4 · 5 · 6</div>
+          <h2>Google (última jornada) & SUMMIT de noche</h2>
+          <p class="day-sub">Happy hour de despedida + el skyline iluminado desde One Vanderbilt</p>
+        </div>
+      </div>
+      <div class="callout">📍 Con el happy hour de por medio, SUMMIT queda de noche en vez de a la luz del día — igual de espectacular, pero con otra vibra (skyline iluminado en vez de reflejos de sol). Si el happy hour termina antes, se puede adelantar todo.</div>
+      <div class="day-grid">
+        <ul class="stops">
+          
+        <li class="stop">
+          <div class="stop-dot" style="background:#EE352E"></div>
+          <div class="stop-time">08:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Desayuno (evento Google) </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#EE352E"></div>
+          <div class="stop-time">09:00–16:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Google <span class="price">almuerzo incluido</span></div>
+            <div class="stop-note">Última jornada — finaliza a las 16:30</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#EE352E"></div>
+          <div class="stop-time">16:30–18:00</div>
+          <div class="stop-body">
+            <div class="stop-act">🥂 Happy Hour de despedida </div>
+            <div class="stop-note">Con el equipo de Google — ubicación a confirmar</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#EE352E"></div>
+          <div class="stop-time">18:00–18:45</div>
+          <div class="stop-body">
+            <div class="stop-act">→ SUMMIT One Vanderbilt <span class="price">$3</span></div>
+            <div class="stop-note">Según dónde sea el happy hour, ~30–45 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#EE352E"></div>
+          <div class="stop-time">19:00–20:30</div>
+          <div class="stop-body">
+            <div class="stop-act">⭐ SUMMIT One Vanderbilt <span class="price">~$47–55</span></div>
+            <div class="stop-note">De noche — el skyline de Manhattan iluminado</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#EE352E"></div>
+          <div class="stop-time">20:30–21:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Cena — Midtown <span class="price">$25–40</span></div>
+            
+          </div>
+        </li>
+        </ul>
+        <div class="mapcard">
+          <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="mapsvg"><defs><clipPath id="clip-140586097639360"><rect x="0" y="0" width="640" height="380" rx="14"/></clipPath></defs><g clip-path="url(#clip-140586097639360)"><rect x="0" y="0" width="640" height="380" fill="#F1ECE1"/><g transform="rotate(-29 320.0 190.0)" stroke="#D8CFBA" stroke-width="1"><line x1="-460" y1="-1152" x2="-460" y2="1152"/><line x1="-426" y1="-1152" x2="-426" y2="1152"/><line x1="-392" y1="-1152" x2="-392" y2="1152"/><line x1="-358" y1="-1152" x2="-358" y2="1152"/><line x1="-324" y1="-1152" x2="-324" y2="1152"/><line x1="-290" y1="-1152" x2="-290" y2="1152"/><line x1="-256" y1="-1152" x2="-256" y2="1152"/><line x1="-222" y1="-1152" x2="-222" y2="1152"/><line x1="-188" y1="-1152" x2="-188" y2="1152"/><line x1="-154" y1="-1152" x2="-154" y2="1152"/><line x1="-120" y1="-1152" x2="-120" y2="1152"/><line x1="-86" y1="-1152" x2="-86" y2="1152"/><line x1="-52" y1="-1152" x2="-52" y2="1152"/><line x1="-18" y1="-1152" x2="-18" y2="1152"/><line x1="16" y1="-1152" x2="16" y2="1152"/><line x1="50" y1="-1152" x2="50" y2="1152"/><line x1="84" y1="-1152" x2="84" y2="1152"/><line x1="118" y1="-1152" x2="118" y2="1152"/><line x1="152" y1="-1152" x2="152" y2="1152"/><line x1="186" y1="-1152" x2="186" y2="1152"/><line x1="220" y1="-1152" x2="220" y2="1152"/><line x1="254" y1="-1152" x2="254" y2="1152"/><line x1="288" y1="-1152" x2="288" y2="1152"/><line x1="322" y1="-1152" x2="322" y2="1152"/><line x1="356" y1="-1152" x2="356" y2="1152"/><line x1="390" y1="-1152" x2="390" y2="1152"/><line x1="424" y1="-1152" x2="424" y2="1152"/><line x1="458" y1="-1152" x2="458" y2="1152"/><line x1="492" y1="-1152" x2="492" y2="1152"/><line x1="526" y1="-1152" x2="526" y2="1152"/><line x1="560" y1="-1152" x2="560" y2="1152"/><line x1="594" y1="-1152" x2="594" y2="1152"/><line x1="628" y1="-1152" x2="628" y2="1152"/><line x1="662" y1="-1152" x2="662" y2="1152"/><line x1="696" y1="-1152" x2="696" y2="1152"/><line x1="730" y1="-1152" x2="730" y2="1152"/><line x1="764" y1="-1152" x2="764" y2="1152"/><line x1="798" y1="-1152" x2="798" y2="1152"/><line x1="832" y1="-1152" x2="832" y2="1152"/><line x1="866" y1="-1152" x2="866" y2="1152"/><line x1="900" y1="-1152" x2="900" y2="1152"/><line x1="934" y1="-1152" x2="934" y2="1152"/><line x1="968" y1="-1152" x2="968" y2="1152"/><line x1="1002" y1="-1152" x2="1002" y2="1152"/><line x1="1036" y1="-1152" x2="1036" y2="1152"/><line x1="1070" y1="-1152" x2="1070" y2="1152"/><line x1="1104" y1="-1152" x2="1104" y2="1152"/><line x1="1138" y1="-1152" x2="1138" y2="1152"/><line x1="-1152" y1="-460" x2="1152" y2="-460" stroke-width="1.6"/><line x1="-1152" y1="-370" x2="1152" y2="-370" stroke-width="1.6"/><line x1="-1152" y1="-280" x2="1152" y2="-280" stroke-width="1.6"/><line x1="-1152" y1="-190" x2="1152" y2="-190" stroke-width="1.6"/><line x1="-1152" y1="-100" x2="1152" y2="-100" stroke-width="1.6"/><line x1="-1152" y1="-10" x2="1152" y2="-10" stroke-width="1.6"/><line x1="-1152" y1="80" x2="1152" y2="80" stroke-width="1.6"/><line x1="-1152" y1="170" x2="1152" y2="170" stroke-width="1.6"/><line x1="-1152" y1="260" x2="1152" y2="260" stroke-width="1.6"/><line x1="-1152" y1="350" x2="1152" y2="350" stroke-width="1.6"/><line x1="-1152" y1="440" x2="1152" y2="440" stroke-width="1.6"/><line x1="-1152" y1="530" x2="1152" y2="530" stroke-width="1.6"/><line x1="-1152" y1="620" x2="1152" y2="620" stroke-width="1.6"/><line x1="-1152" y1="710" x2="1152" y2="710" stroke-width="1.6"/><line x1="-1152" y1="800" x2="1152" y2="800" stroke-width="1.6"/><line x1="-1152" y1="890" x2="1152" y2="890" stroke-width="1.6"/><line x1="-1152" y1="980" x2="1152" y2="980" stroke-width="1.6"/><line x1="-1152" y1="1070" x2="1152" y2="1070" stroke-width="1.6"/></g></g><rect x="1" y="1" width="638" height="378" rx="14" fill="none" stroke="#D8CFBA" stroke-width="2"/><defs><marker id="arrow-EE352E" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#EE352E"/></marker></defs><line x1="200.0" y1="70.0" x2="224.0" y2="70.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7527746,-73.9787253+(SUMMIT)" target="_blank" rel="noopener"><circle cx="200.0" cy="70.0" r="14" fill="#EE352E" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="200.0" y="74.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">1</text><text x="224.0" y="74.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">SUMMIT</text></a></svg>
+          <div class="mapcard-hint">📍 tocá el pin para abrirlo en Google Maps</div>
+          <a class="mapcard-link" href="https://www.google.com/maps/search/?api=1&query=40.7527746,-73.9787253+(SUMMIT)" target="_blank" rel="noopener" style="--c:#EE352E">
+            Abrir en Google Maps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day" id="day4" style="--line-color:#A7A9AC">
+      <div class="day-head">
+        <div class="day-badge" style="background:#A7A9AC">4</div>
+        <div class="day-headtext">
+          <div class="day-eyebrow">JUE 27 AGO &nbsp;·&nbsp; LÍNEA a pie · sin subte</div>
+          <h2>Central Park, Broadway (matinée) & Top of the Rock</h2>
+          <p class="day-sub">Mañana de parque, función de tarde y el atardecer más lindo de la ciudad</p>
+        </div>
+      </div>
+      <div class="callout">🎟️ El sorteo oficial es en lottery.broadwaydirect.com — algunos shows abren la entrada recién el día anterior o esa misma mañana, y no todos tienen función matinée los jueves. Conviene chequear el show elegido con un par de días de anticipación y tener un plan B (TodayTix también sortea varios).</div>
+      <div class="day-grid">
+        <ul class="stops">
+          
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">08:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Hotel → Central Park <span class="price">$3</span></div>
+            <div class="stop-note">Subte A/C/E, Canal St → 59 St-Columbus Circle</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">09:00–09:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Columbus Circle </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">09:30–10:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Strawberry Fields </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">10:00–10:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Bethesda Terrace </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">10:45–11:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Bow Bridge </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">11:15–11:45</div>
+          <div class="stop-body">
+            <div class="stop-act">The Mall </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">11:45–12:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Sheep Meadow </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">12:15–12:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Central Park → Theater District </div>
+            <div class="stop-note">Caminando, ~20–25 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">12:45–13:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Almuerzo cerca del teatro <span class="price">$20–35</span></div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">13:45–14:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Ingreso al teatro </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">14:00–16:30</div>
+          <div class="stop-body">
+            <div class="stop-act">🎭 Broadway — función matinée <span class="price">~$49</span></div>
+            <div class="stop-note">Entrada por sorteo — <a href="https://lottery.broadwaydirect.com/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">lottery.broadwaydirect.com</a></div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">16:30–17:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Times Square </div>
+            <div class="stop-note">Ya están ahí mismo, saliendo del teatro</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">17:15–18:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Tiempo libre / café </div>
+            <div class="stop-note">Zona Rockefeller Center, 5 min caminando</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">18:30–20:00</div>
+          <div class="stop-body">
+            <div class="stop-act">⭐ Top of the Rock <span class="price">~$42–55</span></div>
+            <div class="stop-note">Atardecer (~19:35) — el ángulo con el Empire State de fondo</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">20:00–20:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Rockefeller + St. Patrick's </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#A7A9AC"></div>
+          <div class="stop-time">20:30–21:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Cena — Midtown <span class="price">$25–40</span></div>
+            
+          </div>
+        </li>
+        </ul>
+        <div class="mapcard">
+          <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="mapsvg"><defs><clipPath id="clip-140586095560256"><rect x="0" y="0" width="640" height="380" rx="14"/></clipPath></defs><g clip-path="url(#clip-140586095560256)"><rect x="0" y="0" width="640" height="380" fill="#F1ECE1"/><g transform="rotate(-29 320.0 190.0)" stroke="#D8CFBA" stroke-width="1"><line x1="-460" y1="-1152" x2="-460" y2="1152"/><line x1="-426" y1="-1152" x2="-426" y2="1152"/><line x1="-392" y1="-1152" x2="-392" y2="1152"/><line x1="-358" y1="-1152" x2="-358" y2="1152"/><line x1="-324" y1="-1152" x2="-324" y2="1152"/><line x1="-290" y1="-1152" x2="-290" y2="1152"/><line x1="-256" y1="-1152" x2="-256" y2="1152"/><line x1="-222" y1="-1152" x2="-222" y2="1152"/><line x1="-188" y1="-1152" x2="-188" y2="1152"/><line x1="-154" y1="-1152" x2="-154" y2="1152"/><line x1="-120" y1="-1152" x2="-120" y2="1152"/><line x1="-86" y1="-1152" x2="-86" y2="1152"/><line x1="-52" y1="-1152" x2="-52" y2="1152"/><line x1="-18" y1="-1152" x2="-18" y2="1152"/><line x1="16" y1="-1152" x2="16" y2="1152"/><line x1="50" y1="-1152" x2="50" y2="1152"/><line x1="84" y1="-1152" x2="84" y2="1152"/><line x1="118" y1="-1152" x2="118" y2="1152"/><line x1="152" y1="-1152" x2="152" y2="1152"/><line x1="186" y1="-1152" x2="186" y2="1152"/><line x1="220" y1="-1152" x2="220" y2="1152"/><line x1="254" y1="-1152" x2="254" y2="1152"/><line x1="288" y1="-1152" x2="288" y2="1152"/><line x1="322" y1="-1152" x2="322" y2="1152"/><line x1="356" y1="-1152" x2="356" y2="1152"/><line x1="390" y1="-1152" x2="390" y2="1152"/><line x1="424" y1="-1152" x2="424" y2="1152"/><line x1="458" y1="-1152" x2="458" y2="1152"/><line x1="492" y1="-1152" x2="492" y2="1152"/><line x1="526" y1="-1152" x2="526" y2="1152"/><line x1="560" y1="-1152" x2="560" y2="1152"/><line x1="594" y1="-1152" x2="594" y2="1152"/><line x1="628" y1="-1152" x2="628" y2="1152"/><line x1="662" y1="-1152" x2="662" y2="1152"/><line x1="696" y1="-1152" x2="696" y2="1152"/><line x1="730" y1="-1152" x2="730" y2="1152"/><line x1="764" y1="-1152" x2="764" y2="1152"/><line x1="798" y1="-1152" x2="798" y2="1152"/><line x1="832" y1="-1152" x2="832" y2="1152"/><line x1="866" y1="-1152" x2="866" y2="1152"/><line x1="900" y1="-1152" x2="900" y2="1152"/><line x1="934" y1="-1152" x2="934" y2="1152"/><line x1="968" y1="-1152" x2="968" y2="1152"/><line x1="1002" y1="-1152" x2="1002" y2="1152"/><line x1="1036" y1="-1152" x2="1036" y2="1152"/><line x1="1070" y1="-1152" x2="1070" y2="1152"/><line x1="1104" y1="-1152" x2="1104" y2="1152"/><line x1="1138" y1="-1152" x2="1138" y2="1152"/><line x1="-1152" y1="-460" x2="1152" y2="-460" stroke-width="1.6"/><line x1="-1152" y1="-370" x2="1152" y2="-370" stroke-width="1.6"/><line x1="-1152" y1="-280" x2="1152" y2="-280" stroke-width="1.6"/><line x1="-1152" y1="-190" x2="1152" y2="-190" stroke-width="1.6"/><line x1="-1152" y1="-100" x2="1152" y2="-100" stroke-width="1.6"/><line x1="-1152" y1="-10" x2="1152" y2="-10" stroke-width="1.6"/><line x1="-1152" y1="80" x2="1152" y2="80" stroke-width="1.6"/><line x1="-1152" y1="170" x2="1152" y2="170" stroke-width="1.6"/><line x1="-1152" y1="260" x2="1152" y2="260" stroke-width="1.6"/><line x1="-1152" y1="350" x2="1152" y2="350" stroke-width="1.6"/><line x1="-1152" y1="440" x2="1152" y2="440" stroke-width="1.6"/><line x1="-1152" y1="530" x2="1152" y2="530" stroke-width="1.6"/><line x1="-1152" y1="620" x2="1152" y2="620" stroke-width="1.6"/><line x1="-1152" y1="710" x2="1152" y2="710" stroke-width="1.6"/><line x1="-1152" y1="800" x2="1152" y2="800" stroke-width="1.6"/><line x1="-1152" y1="890" x2="1152" y2="890" stroke-width="1.6"/><line x1="-1152" y1="980" x2="1152" y2="980" stroke-width="1.6"/><line x1="-1152" y1="1070" x2="1152" y2="1070" stroke-width="1.6"/></g></g><rect x="1" y="1" width="638" height="378" rx="14" fill="none" stroke="#D8CFBA" stroke-width="2"/><defs><marker id="arrow-A7A9AC" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#A7A9AC"/></marker></defs><path d="M 266.1 169.4 L 402.7 70.0 L 237.3 310.0 L 299.3 304.6" stroke="#A7A9AC" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow-A7A9AC)" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25))"/><line x1="266.1" y1="169.4" x2="290.1" y2="169.4" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7677641,-73.9821236+(Columbus%20Circle)" target="_blank" rel="noopener"><circle cx="266.1" cy="169.4" r="14" fill="#A7A9AC" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="266.1" y="173.9" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">1</text><text x="290.1" y="173.4" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Columbus Circle</text></a><line x1="402.7" y1="70.0" x2="426.7" y2="70.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.773952799999996,-73.97096570000001+(Bethesda%20Terrace)" target="_blank" rel="noopener"><circle cx="402.7" cy="70.0" r="14" fill="#A7A9AC" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="402.7" y="74.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">2</text><text x="426.7" y="74.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Bethesda Terrace</text></a><line x1="237.3" y1="310.0" x2="218.9" y2="294.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.759011,-73.9844722+(Times%20Square)" target="_blank" rel="noopener"><circle cx="237.3" cy="310.0" r="14" fill="#A7A9AC" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="237.3" y="314.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">3</text><text x="218.9" y="298.6" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Times Square</text></a><line x1="299.3" y1="304.6" x2="323.3" y2="304.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7593495,-73.9794087+(Top%20of%20the%20Rock)" target="_blank" rel="noopener"><circle cx="299.3" cy="304.6" r="14" fill="#A7A9AC" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="299.3" y="309.1" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">4</text><text x="323.3" y="308.6" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Top of the Rock</text></a></svg>
+          <div class="mapcard-hint">📍 tocá un número para abrirlo en Google Maps</div>
+          <a class="mapcard-link" href="https://www.google.com/maps/dir/?api=1&origin=40.7677641,-73.9821236&destination=40.7593495,-73.9794087&waypoints=40.773952799999996,-73.97096570000001|40.759011,-73.9844722" target="_blank" rel="noopener" style="--c:#A7A9AC">
+            Abrir recorrido completo en Google Maps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day" id="day5" style="--line-color:#FCCC0A">
+      <div class="day-head">
+        <div class="day-badge" style="background:#FCCC0A">5</div>
+        <div class="day-headtext">
+          <div class="day-eyebrow">VIE 28 AGO &nbsp;·&nbsp; LÍNEA R · W</div>
+          <h2>Ferry, Downtown, DUMBO & Brooklyn Bridge</h2>
+          <p class="day-sub">Estatua de la Libertad gratis + cruce del puente al atardecer</p>
+        </div>
+      </div>
+      
+      <div class="day-grid">
+        <ul class="stops">
+          
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">08:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Desayuno </div>
+            <div class="stop-note">Hotel</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">08:30</div>
+          <div class="stop-body">
+            <div class="stop-act">Hotel → Whitehall <span class="price">$3</span></div>
+            <div class="stop-note">Subte R/W, ~15–20 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">09:15–10:45</div>
+          <div class="stop-body">
+            <div class="stop-act">⛴ Staten Island Ferry <span class="price">gratis</span></div>
+            <div class="stop-note">Ida — Estatua de la Libertad</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">10:45–11:30</div>
+          <div class="stop-body">
+            <div class="stop-act">St. George </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">11:30–12:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Ferry de regreso <span class="price">gratis</span></div>
+            <div class="stop-note">Estatua de la Libertad otra vez</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">12:15–12:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Battery Park </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">12:45–13:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Charging Bull </div>
+            <div class="stop-note">10 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">13:15–14:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Wall Street </div>
+            <div class="stop-note">5 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">14:00–15:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Stone Street — almuerzo <span class="price">$25–40</span></div>
+            <div class="stop-note">5 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">15:00–15:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Oculus </div>
+            <div class="stop-note">10 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">15:45–16:30</div>
+          <div class="stop-body">
+            <div class="stop-act">9/11 Memorial </div>
+            <div class="stop-note">5 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">16:30–17:00</div>
+          <div class="stop-body">
+            <div class="stop-act">South Street Seaport </div>
+            <div class="stop-note">10 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">17:00–17:30</div>
+          <div class="stop-body">
+            <div class="stop-act">→ DUMBO <span class="price">$3</span></div>
+            <div class="stop-note">Subte A/C/F, ~20–30 min</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">17:30–18:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Washington St. + Pebble Beach + Jane's Carousel </div>
+            <div class="stop-note">DUMBO</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">18:45–19:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Brooklyn Bridge Park + Brooklyn Heights </div>
+            
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">19:45–20:45</div>
+          <div class="stop-body">
+            <div class="stop-act">🌉 Cruce del Brooklyn Bridge </div>
+            <div class="stop-note">A pie, atardecer</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FCCC0A"></div>
+          <div class="stop-time">21:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Cena — Chinatown / Little Italy <span class="price">$15–35</span></div>
+            <div class="stop-note">L'industrie Pizzeria — 4.7★</div>
+          </div>
+        </li>
+        </ul>
+        <div class="mapcard">
+          <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="mapsvg"><defs><clipPath id="clip-140586097502464"><rect x="0" y="0" width="640" height="380" rx="14"/></clipPath></defs><g clip-path="url(#clip-140586097502464)"><rect x="0" y="0" width="640" height="380" fill="#F1ECE1"/><g transform="rotate(-29 320.0 190.0)" stroke="#D8CFBA" stroke-width="1"><line x1="-460" y1="-1152" x2="-460" y2="1152"/><line x1="-426" y1="-1152" x2="-426" y2="1152"/><line x1="-392" y1="-1152" x2="-392" y2="1152"/><line x1="-358" y1="-1152" x2="-358" y2="1152"/><line x1="-324" y1="-1152" x2="-324" y2="1152"/><line x1="-290" y1="-1152" x2="-290" y2="1152"/><line x1="-256" y1="-1152" x2="-256" y2="1152"/><line x1="-222" y1="-1152" x2="-222" y2="1152"/><line x1="-188" y1="-1152" x2="-188" y2="1152"/><line x1="-154" y1="-1152" x2="-154" y2="1152"/><line x1="-120" y1="-1152" x2="-120" y2="1152"/><line x1="-86" y1="-1152" x2="-86" y2="1152"/><line x1="-52" y1="-1152" x2="-52" y2="1152"/><line x1="-18" y1="-1152" x2="-18" y2="1152"/><line x1="16" y1="-1152" x2="16" y2="1152"/><line x1="50" y1="-1152" x2="50" y2="1152"/><line x1="84" y1="-1152" x2="84" y2="1152"/><line x1="118" y1="-1152" x2="118" y2="1152"/><line x1="152" y1="-1152" x2="152" y2="1152"/><line x1="186" y1="-1152" x2="186" y2="1152"/><line x1="220" y1="-1152" x2="220" y2="1152"/><line x1="254" y1="-1152" x2="254" y2="1152"/><line x1="288" y1="-1152" x2="288" y2="1152"/><line x1="322" y1="-1152" x2="322" y2="1152"/><line x1="356" y1="-1152" x2="356" y2="1152"/><line x1="390" y1="-1152" x2="390" y2="1152"/><line x1="424" y1="-1152" x2="424" y2="1152"/><line x1="458" y1="-1152" x2="458" y2="1152"/><line x1="492" y1="-1152" x2="492" y2="1152"/><line x1="526" y1="-1152" x2="526" y2="1152"/><line x1="560" y1="-1152" x2="560" y2="1152"/><line x1="594" y1="-1152" x2="594" y2="1152"/><line x1="628" y1="-1152" x2="628" y2="1152"/><line x1="662" y1="-1152" x2="662" y2="1152"/><line x1="696" y1="-1152" x2="696" y2="1152"/><line x1="730" y1="-1152" x2="730" y2="1152"/><line x1="764" y1="-1152" x2="764" y2="1152"/><line x1="798" y1="-1152" x2="798" y2="1152"/><line x1="832" y1="-1152" x2="832" y2="1152"/><line x1="866" y1="-1152" x2="866" y2="1152"/><line x1="900" y1="-1152" x2="900" y2="1152"/><line x1="934" y1="-1152" x2="934" y2="1152"/><line x1="968" y1="-1152" x2="968" y2="1152"/><line x1="1002" y1="-1152" x2="1002" y2="1152"/><line x1="1036" y1="-1152" x2="1036" y2="1152"/><line x1="1070" y1="-1152" x2="1070" y2="1152"/><line x1="1104" y1="-1152" x2="1104" y2="1152"/><line x1="1138" y1="-1152" x2="1138" y2="1152"/><line x1="-1152" y1="-460" x2="1152" y2="-460" stroke-width="1.6"/><line x1="-1152" y1="-370" x2="1152" y2="-370" stroke-width="1.6"/><line x1="-1152" y1="-280" x2="1152" y2="-280" stroke-width="1.6"/><line x1="-1152" y1="-190" x2="1152" y2="-190" stroke-width="1.6"/><line x1="-1152" y1="-100" x2="1152" y2="-100" stroke-width="1.6"/><line x1="-1152" y1="-10" x2="1152" y2="-10" stroke-width="1.6"/><line x1="-1152" y1="80" x2="1152" y2="80" stroke-width="1.6"/><line x1="-1152" y1="170" x2="1152" y2="170" stroke-width="1.6"/><line x1="-1152" y1="260" x2="1152" y2="260" stroke-width="1.6"/><line x1="-1152" y1="350" x2="1152" y2="350" stroke-width="1.6"/><line x1="-1152" y1="440" x2="1152" y2="440" stroke-width="1.6"/><line x1="-1152" y1="530" x2="1152" y2="530" stroke-width="1.6"/><line x1="-1152" y1="620" x2="1152" y2="620" stroke-width="1.6"/><line x1="-1152" y1="710" x2="1152" y2="710" stroke-width="1.6"/><line x1="-1152" y1="800" x2="1152" y2="800" stroke-width="1.6"/><line x1="-1152" y1="890" x2="1152" y2="890" stroke-width="1.6"/><line x1="-1152" y1="980" x2="1152" y2="980" stroke-width="1.6"/><line x1="-1152" y1="1070" x2="1152" y2="1070" stroke-width="1.6"/></g></g><rect x="1" y="1" width="638" height="378" rx="14" fill="none" stroke="#D8CFBA" stroke-width="2"/><defs><marker id="arrow-FCCC0A" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#FCCC0A"/></marker></defs><path d="M 126.1 310.0 L 87.5 268.7 L 151.8 244.0 L 147.5 70.0 L 122.1 75.1 L 552.5 260.0 L 403.5 198.0" stroke="#FCCC0A" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow-FCCC0A)" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25))"/><line x1="126.1" y1="310.0" x2="150.1" y2="310.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.701085299999995,-74.0131012+(Whitehall)" target="_blank" rel="noopener"><circle cx="126.1" cy="310.0" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="126.1" y="314.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">1</text><text x="150.1" y="314.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Whitehall</text></a><line x1="87.5" y1="268.7" x2="111.5" y2="268.7" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.702931199999995,-74.0153603+(Battery%20Park)" target="_blank" rel="noopener"><circle cx="87.5" cy="268.7" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="87.5" y="273.2" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">2</text><text x="111.5" y="272.7" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Battery Park</text></a><line x1="151.8" y1="244.0" x2="175.8" y2="244.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7040321,-74.0115947+(Stone%20Street)" target="_blank" rel="noopener"><circle cx="151.8" cy="244.0" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="151.8" y="248.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">3</text><text x="175.8" y="248.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Stone Street</text></a><line x1="147.5" y1="70.0" x2="171.5" y2="70.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.711804199999996,-74.0118498+(Oculus)" target="_blank" rel="noopener"><circle cx="147.5" cy="70.0" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="147.5" y="74.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">4</text><text x="171.5" y="74.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Oculus</text></a><line x1="122.1" y1="75.1" x2="148.1" y2="96.9" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7115776,-74.0133362+(9/11%20Memorial)" target="_blank" rel="noopener"><circle cx="122.1" cy="75.1" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="122.1" y="79.6" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">5</text><text x="148.1" y="100.9" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">9/11 Memorial</text></a><line x1="552.5" y1="260.0" x2="534.1" y2="244.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7033164,-73.9881451+(DUMBO)" target="_blank" rel="noopener"><circle cx="552.5" cy="260.0" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="552.5" y="264.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">6</text><text x="534.1" y="248.6" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">DUMBO</text></a><line x1="403.5" y1="198.0" x2="427.5" y2="198.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7060855,-73.9968643+(Brooklyn%20Bridge)" target="_blank" rel="noopener"><circle cx="403.5" cy="198.0" r="14" fill="#FCCC0A" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="403.5" y="202.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">7</text><text x="427.5" y="202.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Brooklyn Bridge</text></a></svg>
+          <div class="mapcard-hint">📍 tocá un número para abrirlo en Google Maps</div>
+          <a class="mapcard-link" href="https://www.google.com/maps/dir/?api=1&origin=40.701085299999995,-74.0131012&destination=40.7060855,-73.9968643&waypoints=40.702931199999995,-74.0153603|40.7040321,-74.0115947|40.711804199999996,-74.0118498|40.7115776,-74.0133362|40.7033164,-73.9881451" target="_blank" rel="noopener" style="--c:#FCCC0A">
+            Abrir recorrido completo en Google Maps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="day" id="day6" style="--line-color:#FF6319">
+      <div class="day-head">
+        <div class="day-badge" style="background:#FF6319">6</div>
+        <div class="day-headtext">
+          <div class="day-eyebrow">SÁB 29 AGO &nbsp;·&nbsp; LÍNEA A</div>
+          <h2>The Nanny, UES, Empire State de día & JFK</h2>
+          <p class="day-sub">Último día — sin apuro, con margen de sobra para el vuelo</p>
+        </div>
+      </div>
+      
+      <div class="day-grid">
+        <ul class="stops">
+          
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">08:00–08:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Desayuno tranquilo </div>
+            <div class="stop-note">Hotel o cerca</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">09:00–09:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Hotel → UES + casa de "The Nanny" </div>
+            <div class="stop-note">Sin apuro</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">09:45–11:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Upper East Side + Conservatory Water </div>
+            <div class="stop-note">Paseo libre</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">11:15–12:45</div>
+          <div class="stop-body">
+            <div class="stop-act">Brunch con calma </div>
+            <div class="stop-note">Sentados, sin mirar el reloj</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">12:45–13:45</div>
+          <div class="stop-body">
+            <div class="stop-act">🚡 Roosevelt Island Tram </div>
+            <div class="stop-note">Ida y vuelta</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">13:45–14:30</div>
+          <div class="stop-body">
+            <div class="stop-act">🏙 Empire State — de día </div>
+            <div class="stop-note">De paso, foto rápida</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">14:30–15:30</div>
+          <div class="stop-body">
+            <div class="stop-act">SoHo — compras finales </div>
+            <div class="stop-note">Ventana relajada</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">15:30–16:15</div>
+          <div class="stop-body">
+            <div class="stop-act">Vuelta al hotel + valijas + check-out </div>
+            <div class="stop-note">Colchón incluido</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">16:15</div>
+          <div class="stop-body">
+            <div class="stop-act">🚇 Salida a JFK </div>
+            <div class="stop-note">Línea A: Canal St → Howard Beach + AirTrain</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">~18:00</div>
+          <div class="stop-body">
+            <div class="stop-act">Llegada a JFK </div>
+            <div class="stop-note">Más de 5 horas hasta el vuelo</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">18:00–23:20</div>
+          <div class="stop-body">
+            <div class="stop-act">Aeropuerto — cena y espera relajada </div>
+            <div class="stop-note">Ya del otro lado de seguridad</div>
+          </div>
+        </li>
+
+        <li class="stop">
+          <div class="stop-dot" style="background:#FF6319"></div>
+          <div class="stop-time">23:20</div>
+          <div class="stop-body">
+            <div class="stop-act">✈ Vuelo AA953 a Buenos Aires </div>
+            
+          </div>
+        </li>
+        </ul>
+        <div class="mapcard">
+          <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="mapsvg"><defs><clipPath id="clip-140586097639104"><rect x="0" y="0" width="640" height="380" rx="14"/></clipPath></defs><g clip-path="url(#clip-140586097639104)"><rect x="0" y="0" width="640" height="380" fill="#F1ECE1"/><g transform="rotate(-29 320.0 190.0)" stroke="#D8CFBA" stroke-width="1"><line x1="-460" y1="-1152" x2="-460" y2="1152"/><line x1="-426" y1="-1152" x2="-426" y2="1152"/><line x1="-392" y1="-1152" x2="-392" y2="1152"/><line x1="-358" y1="-1152" x2="-358" y2="1152"/><line x1="-324" y1="-1152" x2="-324" y2="1152"/><line x1="-290" y1="-1152" x2="-290" y2="1152"/><line x1="-256" y1="-1152" x2="-256" y2="1152"/><line x1="-222" y1="-1152" x2="-222" y2="1152"/><line x1="-188" y1="-1152" x2="-188" y2="1152"/><line x1="-154" y1="-1152" x2="-154" y2="1152"/><line x1="-120" y1="-1152" x2="-120" y2="1152"/><line x1="-86" y1="-1152" x2="-86" y2="1152"/><line x1="-52" y1="-1152" x2="-52" y2="1152"/><line x1="-18" y1="-1152" x2="-18" y2="1152"/><line x1="16" y1="-1152" x2="16" y2="1152"/><line x1="50" y1="-1152" x2="50" y2="1152"/><line x1="84" y1="-1152" x2="84" y2="1152"/><line x1="118" y1="-1152" x2="118" y2="1152"/><line x1="152" y1="-1152" x2="152" y2="1152"/><line x1="186" y1="-1152" x2="186" y2="1152"/><line x1="220" y1="-1152" x2="220" y2="1152"/><line x1="254" y1="-1152" x2="254" y2="1152"/><line x1="288" y1="-1152" x2="288" y2="1152"/><line x1="322" y1="-1152" x2="322" y2="1152"/><line x1="356" y1="-1152" x2="356" y2="1152"/><line x1="390" y1="-1152" x2="390" y2="1152"/><line x1="424" y1="-1152" x2="424" y2="1152"/><line x1="458" y1="-1152" x2="458" y2="1152"/><line x1="492" y1="-1152" x2="492" y2="1152"/><line x1="526" y1="-1152" x2="526" y2="1152"/><line x1="560" y1="-1152" x2="560" y2="1152"/><line x1="594" y1="-1152" x2="594" y2="1152"/><line x1="628" y1="-1152" x2="628" y2="1152"/><line x1="662" y1="-1152" x2="662" y2="1152"/><line x1="696" y1="-1152" x2="696" y2="1152"/><line x1="730" y1="-1152" x2="730" y2="1152"/><line x1="764" y1="-1152" x2="764" y2="1152"/><line x1="798" y1="-1152" x2="798" y2="1152"/><line x1="832" y1="-1152" x2="832" y2="1152"/><line x1="866" y1="-1152" x2="866" y2="1152"/><line x1="900" y1="-1152" x2="900" y2="1152"/><line x1="934" y1="-1152" x2="934" y2="1152"/><line x1="968" y1="-1152" x2="968" y2="1152"/><line x1="1002" y1="-1152" x2="1002" y2="1152"/><line x1="1036" y1="-1152" x2="1036" y2="1152"/><line x1="1070" y1="-1152" x2="1070" y2="1152"/><line x1="1104" y1="-1152" x2="1104" y2="1152"/><line x1="1138" y1="-1152" x2="1138" y2="1152"/><line x1="-1152" y1="-460" x2="1152" y2="-460" stroke-width="1.6"/><line x1="-1152" y1="-370" x2="1152" y2="-370" stroke-width="1.6"/><line x1="-1152" y1="-280" x2="1152" y2="-280" stroke-width="1.6"/><line x1="-1152" y1="-190" x2="1152" y2="-190" stroke-width="1.6"/><line x1="-1152" y1="-100" x2="1152" y2="-100" stroke-width="1.6"/><line x1="-1152" y1="-10" x2="1152" y2="-10" stroke-width="1.6"/><line x1="-1152" y1="80" x2="1152" y2="80" stroke-width="1.6"/><line x1="-1152" y1="170" x2="1152" y2="170" stroke-width="1.6"/><line x1="-1152" y1="260" x2="1152" y2="260" stroke-width="1.6"/><line x1="-1152" y1="350" x2="1152" y2="350" stroke-width="1.6"/><line x1="-1152" y1="440" x2="1152" y2="440" stroke-width="1.6"/><line x1="-1152" y1="530" x2="1152" y2="530" stroke-width="1.6"/><line x1="-1152" y1="620" x2="1152" y2="620" stroke-width="1.6"/><line x1="-1152" y1="710" x2="1152" y2="710" stroke-width="1.6"/><line x1="-1152" y1="800" x2="1152" y2="800" stroke-width="1.6"/><line x1="-1152" y1="890" x2="1152" y2="890" stroke-width="1.6"/><line x1="-1152" y1="980" x2="1152" y2="980" stroke-width="1.6"/><line x1="-1152" y1="1070" x2="1152" y2="1070" stroke-width="1.6"/></g></g><rect x="1" y="1" width="638" height="378" rx="14" fill="none" stroke="#D8CFBA" stroke-width="2"/><defs><marker id="arrow-FF6319" viewBox="0 0 10 10" refX="8" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#FF6319"/></marker></defs><path d="M 215.5 70.2 L 212.2 70.0 L 216.4 94.0 L 186.0 117.8 L 163.1 161.9 L 476.9 310.0" stroke="#FF6319" stroke-width="4" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.95" marker-end="url(#arrow-FF6319)" style="filter:drop-shadow(0 1px 1px rgba(0,0,0,0.25))"/><line x1="215.5" y1="70.2" x2="239.5" y2="70.2" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7741343,-73.9647748+(Casa%20The%20Nanny)" target="_blank" rel="noopener"><circle cx="215.5" cy="70.2" r="14" fill="#FF6319" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="215.5" y="74.7" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">1</text><text x="239.5" y="74.2" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Casa The Nanny</text></a><line x1="212.2" y1="70.0" x2="193.8" y2="54.6" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7742331,-73.9671147+(Conserv.%20Water)" target="_blank" rel="noopener"><circle cx="212.2" cy="70.0" r="14" fill="#FF6319" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="212.2" y="74.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">2</text><text x="193.8" y="58.6" text-anchor="end" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Conserv. Water</text></a><line x1="216.4" y1="94.0" x2="240.4" y2="94.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7612789,-73.9641664+(Roosevelt%20Tram)" target="_blank" rel="noopener"><circle cx="216.4" cy="94.0" r="14" fill="#FF6319" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="216.4" y="98.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">3</text><text x="240.4" y="98.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Roosevelt Tram</text></a><line x1="186.0" y1="117.8" x2="204.4" y2="133.2" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7484405,-73.98566439999999+(Empire%20State)" target="_blank" rel="noopener"><circle cx="186.0" cy="117.8" r="14" fill="#FF6319" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="186.0" y="122.3" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">4</text><text x="204.4" y="137.2" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">Empire State</text></a><line x1="163.1" y1="161.9" x2="187.1" y2="161.9" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.7245908,-74.00191740000001+(SoHo)" target="_blank" rel="noopener"><circle cx="163.1" cy="161.9" r="14" fill="#FF6319" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="163.1" y="166.4" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">5</text><text x="187.1" y="165.9" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">SoHo</text></a><line x1="476.9" y1="310.0" x2="500.9" y2="310.0" stroke="#B9AF98" stroke-width="1"/><a xlink:href="https://www.google.com/maps/search/?api=1&query=40.6446161,-73.7797222+(JFK)" target="_blank" rel="noopener"><circle cx="476.9" cy="310.0" r="14" fill="#FF6319" stroke="#F1ECE1" stroke-width="3" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,0.35))"/><text x="476.9" y="314.5" text-anchor="middle" font-size="12" font-weight="700" fill="white" font-family="IBM Plex Mono, monospace">6</text><text x="500.9" y="314.0" text-anchor="start" font-size="12.5" fill="#2B2A26" font-family="Inter, sans-serif" font-weight="700" style="paint-order:stroke;stroke:#F1ECE1;stroke-width:3px">JFK</text></a></svg>
+          <div class="mapcard-hint">📍 tocá un número para abrirlo en Google Maps</div>
+          <a class="mapcard-link" href="https://www.google.com/maps/dir/?api=1&origin=40.7741343,-73.9647748&destination=40.6446161,-73.7797222&waypoints=40.7742331,-73.9671147|40.7612789,-73.9641664|40.7484405,-73.98566439999999|40.7245908,-74.00191740000001" target="_blank" rel="noopener" style="--c:#FF6319">
+            Abrir recorrido completo en Google Maps →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  <section id="budget" class="day">
+    <div class="section-head" style="padding-top:0">
+      <div class="eyebrow">POR PERSONA</div>
+      <h2 class="big">Presupuesto de referencia</h2>
+    </div>
+    <table class="budget-table">
+      <tr><td>Subte / bus (tope 7 días)</td><td class="num">$35 máx</td></tr>
+<tr><td>JFK AirTrain + subte</td><td class="num">$12–18 por tramo</td></tr>
+<tr><td>Staten Island Ferry</td><td class="num">$0</td></tr>
+<tr><td>Top of the Rock</td><td class="num">$42–55</td></tr>
+<tr><td>SUMMIT</td><td class="num">$47–55</td></tr>
+<tr><td>Broadway (lottery)</td><td class="num">~$49</td></tr>
+<tr><td>Desayunos</td><td class="num">~$60</td></tr>
+<tr><td>Almuerzos</td><td class="num">~$100–130</td></tr>
+<tr><td>Cenas</td><td class="num">~$130–170</td></tr>
+<tr><td>Snacks / cafés</td><td class="num">~$40–50</td></tr>
+    </table>
+    <div class="budget-total">
+      <div class="lbl">TOTAL ESTIMADO</div>
+      <div class="amt">US$450–550</div>
+    </div>
+    <div class="tip">Usando siempre el mismo OMNY/tarjeta, el tope semanal de $35 cubre todos los viajes en subte/bus de lunes a sábado — no hace falta comprar MetroCard.</div>
+
+    <div class="section-head">
+      <div class="eyebrow">PARA NO DECIDIR A ÚLTIMO MOMENTO</div>
+      <h2 class="big">Zonas de cena</h2>
+    </div>
+    <div class="dinner-grid">
+      <div class="dinner-chip"><span class="dinner-dow" style="background:#0039A6">LUN</span>SoHo / Little Italy</div>
+<div class="dinner-chip"><span class="dinner-dow" style="background:#00933C">MAR</span>Midtown / Koreatown</div>
+<div class="dinner-chip"><span class="dinner-dow" style="background:#EE352E">MIÉ</span>Theater District (rápida, pre-Broadway)</div>
+<div class="dinner-chip"><span class="dinner-dow" style="background:#A7A9AC">JUE</span>Upper East Side o SoHo</div>
+<div class="dinner-chip"><span class="dinner-dow" style="background:#FCCC0A">VIE</span>★ Little Italy / Chinatown</div>
+<div class="dinner-chip"><span class="dinner-dow" style="background:#FF6319">SÁB</span>Comida en JFK, con tiempo de sobra</div>
+    </div>
+  </section>
+
+  <section id="fotos" class="day">
+    <div class="section-head" style="padding-top:0">
+      <div class="eyebrow">GUÍA RÁPIDA</div>
+      <h2 class="big">Dónde sacar las mejores fotos</h2>
+    </div>
+    <div class="photo-grid">
+      
+    <div class="photo-card">
+      <div class="photo-tag">Lunes</div>
+      <h3>Top of the Rock</h3>
+      <p>Subí al nivel más alto (3°, sin techo) y mirá hacia el sur: el Empire State queda centrado, con Downtown de fondo. El ángulo icónico de la ciudad.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Martes</div>
+      <h3>Empire State — de noche</h3>
+      <p>No la base (queda distorsionada) — cruzá a la 5ta Avenida entre las calles 33 y 35 y sacá desde ahí, con el edificio completo iluminado.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Martes</div>
+      <h3>SUMMIT One Vanderbilt</h3>
+      <p>La sala espejada "Air" es la más fotogénica. Andá temprano dentro de tu horario — se llena rápido.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Martes</div>
+      <h3>Grand Central</h3>
+      <p>Entrepiso oeste (Campbell Bar) mirando hacia abajo: el techo con las constelaciones y todo el movimiento del salón.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Lun / Miér</div>
+      <h3>Times Square</h3>
+      <p>Subí las gradas rojas de Duffy Square (46th St) para ganar altura sobre la multitud.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Jueves</div>
+      <h3>Bethesda Terrace</h3>
+      <p>La foto clásica: parado en la fuente mirando la arcada. Para fuente + skyline, arriba de la escalinata.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Jueves</div>
+      <h3>Bow Bridge</h3>
+      <p>Parate a mitad del puente — se ve la curva completa reflejada si no hay viento.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Viernes</div>
+      <h3>Estatua de la Libertad</h3>
+      <p>Ferry de ida: lado derecho. De vuelta: lado izquierdo. La ves de frente en ambos trayectos, gratis.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Viernes</div>
+      <h3>Brooklyn Bridge / DUMBO</h3>
+      <p>El encuadre famoso del Manhattan Bridge: Washington St entre Front y Water St. Temprano o al atardecer, antes de que se llene.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Viernes</div>
+      <h3>Cruce del Brooklyn Bridge</h3>
+      <p>Desde la primera torre de piedra mirando a Manhattan. El atardecer programado es el mejor momento — luz dorada.</p>
+    </div>
+
+    <div class="photo-card">
+      <div class="photo-tag">Sábado</div>
+      <h3>Empire State — de día</h3>
+      <p>Mismo ángulo que de noche: 5ta Avenida entre 33 y 35. Con cielo despejado, espectacular contra el azul.</p>
+    </div>
+    </div>
+  </section>
+
+  <section id="subte" class="day" style="border-bottom:1px solid var(--hairline)">
+    <div class="section-head" style="padding-top:0">
+      <div class="eyebrow">PASO A PASO</div>
+      <h2 class="big">Cómo tomar el subte</h2>
+    </div>
+    <div>
+      
+    <div class="subway-step">
+      <div class="subway-num">1</div>
+      <div><h4>OMNY, no MetroCard</h4><p>Apoyá tu tarjeta contactless o el celular en el lector amarillo redondo. $2.90 por viaje, con tope automático de $35 por semana — usá siempre el mismo medio de pago.</p></div>
+    </div>
+
+    <div class="subway-step">
+      <div class="subway-num">2</div>
+      <div><h4>Uptown vs. Downtown</h4><p>Uptown = hacia el norte (números de calle más altos). Downtown = hacia el sur. Es el error más común de los turistas — fijate bien antes de bajar al andén.</p></div>
+    </div>
+
+    <div class="subway-step">
+      <div class="subway-num">3</div>
+      <div><h4>Local vs. Express</h4><p>Círculo = local (para en todas). Diamante = express (se saltea paradas). Mismo andén, distinto tren — mirá el cartel antes de subir.</p></div>
+    </div>
+
+    <div class="subway-step">
+      <div class="subway-num">4</div>
+      <div><h4>Cómo orientarte</h4><p>Google Maps o Citymapper con el mapa offline descargado. Te dicen línea, andén y cantidad de paradas exactas.</p></div>
+    </div>
+
+    <div class="subway-step">
+      <div class="subway-num">5</div>
+      <div><h4>Transbordos gratis</h4><p>En estaciones grandes (Times Sq, Grand Central) cambiás de línea caminando dentro de la estación — un solo toque de OMNY cubre 2 horas de transbordos.</p></div>
+    </div>
+    </div>
+
+    <div class="section-head">
+      <div class="eyebrow">SEMANA COMPLETA</div>
+      <h2 class="big" style="font-size:28px">Recorridos específicos</h2>
+    </div>
+    <table class="routes-table">
+      <tr><th>Tramo</th><th>Día</th><th>Cómo</th></tr>
+      
+    <tr><td class="route-name">JFK → Hotel</td><td class="route-day">Lunes, llegada</td><td>AirTrain (gratis) → Howard Beach → línea A → Canal St</td></tr>
+
+
+    <tr><td class="route-name">Chelsea → Midtown</td><td class="route-day">Lunes</td><td>Línea A/C/E dirección Uptown</td></tr>
+
+
+    <tr><td class="route-name">Hotel → Central Park</td><td class="route-day">Jueves</td><td>Línea A/C/E Uptown → 59 St-Columbus Circle</td></tr>
+
+
+    <tr><td class="route-name">UES → SoHo</td><td class="route-day">Jueves / Sábado</td><td>Línea 4/5/6 (East Side) hasta cerca de Canal St</td></tr>
+
+
+    <tr><td class="route-name">Hotel → Ferry</td><td class="route-day">Viernes</td><td>Línea R/W Downtown → Whitehall St</td></tr>
+
+
+    <tr><td class="route-name">Downtown → DUMBO</td><td class="route-day">Viernes</td><td>Línea A/C → High St, o F → York St</td></tr>
+
+
+    <tr><td class="route-name">Hotel → JFK</td><td class="route-day">Sábado, regreso</td><td>Línea A Downtown → Howard Beach → AirTrain</td></tr>
+
+    </table>
+
+    <div class="callout">Eviten la hora pico (7:30–9:30 y 17–19 entre semana) para los traslados que no sean hacia/desde Google. Los trenes pasan cada 3–8 min en horario normal, cada 10–15 de noche o fin de semana.</div>
+  </section>
+
+</div>
+
+<footer>NYC · AGO 2026 &nbsp;—&nbsp; BUEN VIAJE ✈</footer>
+
+</body>
+</html>
